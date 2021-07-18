@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
+import {fromEvent} from "rxjs";
 
 @Component({
   selector: 'app-c1',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class C1Component implements OnInit {
 
-  constructor() { }
+  focusedElement: HTMLElement | undefined;
+
+  constructor(private el: ElementRef) { }
 
   ngOnInit(): void {
+    const block = this.el.nativeElement.querySelector('.block-to-track');
+    const focusObservable = fromEvent(block, 'focusin').subscribe(
+      (focus: any) => {
+        this.focusedElement = focus.target;
+      },
+      (err)=>err,
+      ()=>console.log('complete'));
   }
 
 }

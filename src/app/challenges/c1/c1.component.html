@@ -1,1 +1,43 @@
-<p>c1 works!</p>
+<blockquote>
+  Create a single Observable stream to watch for focus
+  being present in the area
+</blockquote>
+<p>
+  <label>
+    Just an input
+    <input placeholder="Focus can be here">
+  </label>
+  <button>I'm a button</button>
+</p>
+
+<div class="block-to-track border-4 rounded">
+  <h2>
+    Track focus in this block
+  </h2>
+  <p>
+    <select>
+      <option *ngFor="let option of [1,2,3,4,5]" [value]="option">{{option}}</option>
+    </select>
+    <input type="date">
+    <button class="p-2 m-1 bg-red-200">I'm a button</button>
+  <div>
+    <input type="radio"  name="drone" value="huey" checked>
+    <label>Radio1</label>
+  </div>
+  <div>
+    <input type="radio"  name="drone" value="huey">
+    <label>Radio2</label>
+  </div>
+</div>
+
+<div>
+  <label>
+    Just an input
+    <input placeholder="Focus can be here">
+  </label>
+  <button>I'm a button</button>
+</div>
+
+<ng-container>
+  Focus is on {{focusedElement}}
+</ng-container>
