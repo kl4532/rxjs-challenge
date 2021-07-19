@@ -1,5 +1,5 @@
 <div class="container">
-  <select class="center" name="" id="" (change)="navigateTo($event.target)">
+  <select class="center" name="" id="" (change)="navigateTo($event.target)" [(ngModel)]="value">
     <option
       class="p-4"
       *ngFor="let challenge of challenges; let i = index"
@@ -7,4 +7,3 @@
   </select>
   <router-outlet></router-outlet>
 </div>
-
