@@ -1,0 +1,15 @@
+<form [formGroup]="form" action="" (submit)="validate()" class="mt-2">
+  <div class="flex flex-col items-center space-y-3">
+    <div class="space-x-0 text-right">
+      <label class="w-20 mr-1 inline-block text-right" for="name">Name: </label>
+      <input id="name" type="text" name="name" formControlName="name">
+    </div>
+    <div class="justify-center flex-auto">
+      <label class="w-20 mr-1 inline-block text-right" for="password">Password: </label>
+      <input id="password" type="password" name="password" formControlName="password">
+    </div>
+    <button class="mt-1 bg-green-500 w-20 py-3" type="submit">Submit</button>
+
+    <p *ngIf="validated"></p>
+  </div>
+</form>
