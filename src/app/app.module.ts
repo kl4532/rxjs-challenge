@@ -6,20 +6,23 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { C1Component } from './challenges/c1/c1.component';
 import { C2Component } from './challenges/c2/c2.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { C3Component } from './challenges/c3/c3.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     C1Component,
     C2Component,
+    C3Component,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {ResolveEnd, Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {routes} from './app-routing.module';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import {Subscription} from "rxjs";
 export class AppComponent implements OnInit, OnDestroy {
   title = 'rxjs-challenge';
   challenges: string[] = [];
-  challengesAmount = 2;
+  challengesAmount = routes.length;
   value: string = "c1";
   sub: Subscription | undefined;
 
