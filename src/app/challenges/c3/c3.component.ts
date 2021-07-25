@@ -13,6 +13,8 @@ export class C3Component implements OnInit {
 
   form: FormGroup = new FormGroup({});
   validated = false;
+  valid = false;
+
   constructor(private authSrv: AuthService) { }
 
   ngOnInit(): void {
@@ -40,7 +42,15 @@ export class C3Component implements OnInit {
   }
 
   sendMessage(logged: boolean) {
-    console.log("logged", logged);
+    let timeout;
+    window.clearTimeout(timeout);
+    this.validated = true;
+    timeout = setTimeout(()=> this.validated = false, 5000);
+    if(logged) {
+      this.valid = true;
+    } else {
+      this.valid = false;
+    }
   }
 
 }
