@@ -10,16 +10,14 @@ export class AuthService {
   constructor() { }
 
   authPassword(toVerify: any): Observable<boolean> {
+    // mock
     const userDB = {
       name: "test",
       password: "123"
     }
 
-    return of(userDB).pipe(map((usr) =>{
-      if(usr.password !== toVerify.password) {
-        return false;
-      }
-      return true;
-    }));
+    return of(userDB).pipe(
+      map((usr) => usr.password == toVerify.password
+    ));
   }
 }

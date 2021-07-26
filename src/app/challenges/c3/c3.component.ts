@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {AuthService} from "./services/auth.service";
-import {timeout} from "rxjs/operators";
-import {Subscription} from "rxjs";
+import {
+  map,
+  switchMap,
+  tap,
+} from "rxjs/operators";
+import {of, Subject, Subscription, timer} from "rxjs";
+
 
 @Component({
   selector: 'app-c3',
   templateUrl: './c3.component.html',
   styleUrls: ['./c3.component.scss']
 })
-export class C3Component implements OnInit {
+export class C3Component implements OnInit, OnDestroy {
 
   form: FormGroup = new FormGroup({});
-  validated = false;
-  valid = false;
+  hidden = true;
+  sub: Subscription | undefined;
+  message = "";
 
   constructor(private authSrv: AuthService) { }
+  readonly submit$ = new Subject<void>();
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -23,34 +30,27 @@ export class C3Component implements OnInit {
         password: new FormControl('')
       }
     )
+
+    this.sub = this.submit$.pipe(
+      map(() => {
+        return {
+          name: this.form.controls.name.value,
+          password: this.form.controls.password.value
+        }
+      }),
+      switchMap(user => this.authSrv.authPassword(user).pipe(
+        map(isValid => {
+          this.hidden = false;
+          this.message = isValid ? "Logged in" : "Wrong password";
+        }),
+      )),
+      switchMap(() => timer(1000).pipe(tap(() => this.hidden = true))),
+    ).subscribe();
   }
 
-  validate() {
-    const user = {
-      name: this.form.controls.name.value,
-      password: this.form.controls.password.value
-    }
-
-    this.authSrv.authPassword(user).subscribe((valid)=> {
-      if(valid) {
-        this.sendMessage(true);
-        return;
-      }
-      this.sendMessage(false);
-    })
-
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 
-  sendMessage(logged: boolean) {
-    let timeout;
-    window.clearTimeout(timeout);
-    this.validated = true;
-    timeout = setTimeout(()=> this.validated = false, 5000);
-    if(logged) {
-      this.valid = true;
-    } else {
-      this.valid = false;
-    }
-  }
 
 }
