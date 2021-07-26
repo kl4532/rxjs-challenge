@@ -1,18 +1,22 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {AuthService} from "./services/auth.service";
+import {AuthService} from "./auth.service";
+
 import {
+  delay,
   map,
   switchMap,
   tap,
 } from "rxjs/operators";
-import {of, Subject, Subscription, timer} from "rxjs";
+import {Subject, Subscription, timer} from "rxjs";
+import {Animations} from "./animations";
 
 
 @Component({
   selector: 'app-c3',
   templateUrl: './c3.component.html',
-  styleUrls: ['./c3.component.scss']
+  styleUrls: ['./c3.component.scss'],
+  animations: Animations,
 })
 export class C3Component implements OnInit, OnDestroy {
 
@@ -20,6 +24,9 @@ export class C3Component implements OnInit, OnDestroy {
   hidden = true;
   sub: Subscription | undefined;
   message = "";
+  disabled = false;
+  logged = false;
+  hintVisible = false;
 
   constructor(private authSrv: AuthService) { }
   readonly submit$ = new Subject<void>();
@@ -32,7 +39,10 @@ export class C3Component implements OnInit, OnDestroy {
     )
 
     this.sub = this.submit$.pipe(
+      tap(() => this.disabled = true),
+      delay(500),
       map(() => {
+        this.disabled = false;
         return {
           name: this.form.controls.name.value,
           password: this.form.controls.password.value
@@ -41,11 +51,18 @@ export class C3Component implements OnInit, OnDestroy {
       switchMap(user => this.authSrv.authPassword(user).pipe(
         map(isValid => {
           this.hidden = false;
-          this.message = isValid ? "Logged in" : "Wrong password";
+          this.message = "Wrong password";
+          this.logged = isValid;
         }),
       )),
       switchMap(() => timer(1000).pipe(tap(() => this.hidden = true))),
     ).subscribe();
+  }
+  getName(): string {
+    return this.authSrv.topSecret.name;
+  }
+  getPassword(): string {
+    return this.authSrv.topSecret.password;
   }
 
   ngOnDestroy() {

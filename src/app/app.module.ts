@@ -8,6 +8,7 @@ import { C1Component } from './challenges/c1/c1.component';
 import { C2Component } from './challenges/c2/c2.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { C3Component } from './challenges/c3/c3.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { C3Component } from './challenges/c3/c3.component';
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,17 +6,16 @@ import {map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class AuthService {
+  // mock
+  topSecret = {
+    name: "james",
+    password: "007"
+  }
 
   constructor() { }
 
   authPassword(toVerify: any): Observable<boolean> {
-    // mock
-    const userDB = {
-      name: "test",
-      password: "123"
-    }
-
-    return of(userDB).pipe(
+    return of(this.topSecret).pipe(
       map((usr) => usr.password == toVerify.password
     ));
   }
