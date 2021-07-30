@@ -1,0 +1,10 @@
+<div class="flex flex-col justify-center items-center">
+  <button [disabled]="btnDisabled" class="bg-green-300 px-2.5 my-1" (click)="startIfVisible()">Start loading</button>
+
+  <div *ngIf="btnDisabled;" class="outer">
+    <div class="inner" #innerView></div>
+  </div>
+
+  <p *ngIf="!btnDisabled && success">Congratulations, you made it!</p>
+</div>
+

@@ -9,6 +9,7 @@ import { C2Component } from './challenges/c2/c2.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { C3Component } from './challenges/c3/c3.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { C4Component } from './challenges/c4/c4.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     C1Component,
     C2Component,
     C3Component,
+    C4Component,
 
   ],
   imports: [

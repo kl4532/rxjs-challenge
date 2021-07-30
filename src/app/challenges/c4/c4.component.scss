@@ -1,0 +1,18 @@
+.outer {
+  border: 1px solid purple;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.inner {
+  height: 28px;
+  border-radius:4px;
+  width: 0px;
+  background-color: dodgerblue;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
