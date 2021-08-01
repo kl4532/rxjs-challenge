@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { C3Component } from './challenges/c3/c3.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { C4Component } from './challenges/c4/c4.component';
+import { C5Component } from './challenges/c5/c5.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { C4Component } from './challenges/c4/c4.component';
     C2Component,
     C3Component,
     C4Component,
+    C5Component,
 
   ],
   imports: [

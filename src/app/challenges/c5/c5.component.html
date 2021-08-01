@@ -1,0 +1,9 @@
+<div *ngIf="output == 0; else showCounter">
+  <label>Timeout</label>
+  <input class="w-20 mx-1" type="number" [(ngModel)]="value">
+  <button class="bg-red-500 text-white px-2 py-1 rounded-2xl" (click)="starter$.next(value)">Start countdown</button>
+</div>
+<ng-template #showCounter>
+  <p>Counter: {{output}}</p>
+</ng-template>
+
