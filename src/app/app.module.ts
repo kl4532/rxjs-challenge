@@ -11,6 +11,7 @@ import { C3Component } from './challenges/c3/c3.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { C4Component } from './challenges/c4/c4.component';
 import { C5Component } from './challenges/c5/c5.component';
+import { C6Component } from './challenges/c6/c6.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { C5Component } from './challenges/c5/c5.component';
     C3Component,
     C4Component,
     C5Component,
-
+    C6Component,
+    C6Component
   ],
   imports: [
     BrowserModule,
