@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {interval} from "rxjs";
-import {map, takeWhile} from "rxjs/operators";
+import {map, takeUntil, takeWhile} from "rxjs/operators";
 
 @Component({
   selector: 'app-c4',
@@ -39,7 +39,6 @@ export class C4Component implements OnInit {
       map(() => {
         progress += this.increment;
         this.rendered.setStyle(inner, 'width', progress+'px');
-        console.log(inner.offsetWidth);
         return inner.offsetWidth >= outer.offsetWidth
       }),
       takeWhile((finished) => {
