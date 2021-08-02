@@ -1,0 +1,13 @@
+<div class="container">
+  <header
+    @triggerShow
+    *ngIf="!(hidden$ | async)"
+    class="fixed top-0.5 left-1 right-1 bg-green-300 rounded text-center text-sm">
+    <h2>I am the sticky header</h2>
+  </header>
+  <article
+    style=" height: 2000px; writing-mode: vertical-rl; text-orientation: upright;">
+    <h1 class="text-8xl">scroll me</h1>
+  </article>
+</div>
+
