@@ -1,0 +1,5 @@
+<input type="text" (input)="search($event)">
+<h2>Items</h2>
+<ul *ngIf="filteredValues | async as res">
+ <li *ngFor="let item of res">{{item}}</li>
+</ul>
