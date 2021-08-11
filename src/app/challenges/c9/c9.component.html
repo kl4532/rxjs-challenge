@@ -1,7 +1,13 @@
-<div>
-  {{showText | async}}
-</div>
+<div class="flex flex-col items-center">
+  <div class="karaoke-screen
+              w-96 text-center  p-3 my-2
+              bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 ...
+              text-white">
+  </div>
 
-<br>
-<button (click)="play.next()">Play a song</button>
-<p>animation time {{animationTime | async}}</p>
+  <footer class="flex flex-col space-y-2">
+    <button [disabled]="(runKaraoke$ | async) || (speed.val < speed.min || speed.val > speed.max)" class="px-1.5 bg-blue-300 rounded" (click)="play$.next()">Play a song</button>
+    <input type="number" [min]="speed.min" [max]="speed.max" [(ngModel)]="speed.val">
+    <p *ngIf="speed.val < speed.min || speed.val > speed.max" class="text-red-500">Speed should be between {{speed.min}} and {{speed.max}}</p>
+  </footer>
+</div>
