@@ -1,3 +1,19 @@
-<div #area class="area">
-  <div class="target"></div>
-</div>
+  <div class="outer flex">
+    <canvas #canvas class="canvas mr-2"></canvas>
+    <div class="flex flex-col justify-between">
+      <div (click)="setCanvas('red')" class="red w-5 h-5 rounded-3xl bg-red-500"></div>
+      <div (click)="setCanvas('yellow')" class="red w-5 h-5 rounded-3xl bg-yellow-300"></div>
+      <div (click)="setCanvas('green')" class="red w-5 h-5 rounded-3xl bg-green-500"></div>
+      <div (click)="setCanvas('cyan')" class="red w-5 h-5 rounded-3xl bg-blue-200"></div>
+      <div (click)="setCanvas('blue')" class="red w-5 h-5 rounded-3xl bg-blue-500"></div>
+      <div (click)="setCanvas('magenta')" class="red w-5 h-5 rounded-3xl bg-pink-400"></div>
+    </div>
+    <div class="target"></div>
+  </div>
+
+
+<ng-container *ngIf="color$ | async as color ">
+    <p>RGBA: {{color.rgba}}</p>
+    <p>HEX: {{color.hex}}</p>
+</ng-container>
+
