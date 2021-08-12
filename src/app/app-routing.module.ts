@@ -10,6 +10,7 @@ import {C6Component} from "./challenges/c6/c6.component";
 import {C7Component} from "./challenges/c7/c7.component";
 import {C8Component} from "./challenges/c8/c8.component";
 import {C9Component} from "./challenges/c9/c9.component";
+import {C10Component} from "./challenges/c10/c10.component";
 
 export const routes: Routes = [
   { path: 'c1', component: C1Component },
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'c7', component: C7Component },
   { path: 'c8', component: C8Component },
   { path: 'c9', component: C9Component },
+  { path: 'c10', component: C10Component },
 ];
 
 
