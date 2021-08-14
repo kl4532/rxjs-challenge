@@ -24,26 +24,20 @@ export class C10Component implements AfterViewInit {
 
     const pointer = document.querySelector('.target') as HTMLElement;
 
-    this.color$ = mousedown$.pipe(
+    const mdColor$ = mousedown$.pipe(
       map((event) => {
-        this.setPosition(event as MouseEvent, pointer);
-        return event;
+        return this.setColor(event as MouseEvent, pointer);
       }),
+    )
+    const mmColor$ = mousedown$.pipe(
       switchMap(() => mousemove$.pipe(
-        tap((event) => {
-          this.setPosition(event as MouseEvent, pointer);
+        map((event) => {
+          return this.setColor(event as MouseEvent, pointer);
         }),
         takeUntil(mouseup$),
-      )),
-      map(event => {
-        const e = <MouseEvent>event;
-        const data = this.canvas.nativeElement.getContext('2d').getImageData(e.offsetX, e.offsetY, 1, 1).data;
-        return {
-          rgba: this.getRGBA(data),
-          hex: this.getHex(data[0], data[1], data[2])
-        }
-      })
+      ))
     )
+    this.color$ = merge(mmColor$, mdColor$);
   }
 
   setPosition(event: MouseEvent, element: HTMLElement) {
@@ -52,7 +46,6 @@ export class C10Component implements AfterViewInit {
   }
 
   setCanvas(color: string) {
-    console.log(this.canvas);
     const canvas = this.canvas.nativeElement;
     canvas.width  = 200;
     canvas.height = 200;
@@ -85,6 +78,16 @@ export class C10Component implements AfterViewInit {
         b = "0" + b;
 
       return "#" + r + g + b;
+  }
+
+  setColor(event: MouseEvent, pointer: HTMLElement): any {
+    this.setPosition(event as MouseEvent, pointer);
+    const e = <MouseEvent>event;
+    const data = this.canvas.nativeElement.getContext('2d').getImageData(e.offsetX, e.offsetY, 1, 1).data;
+    return {
+      rgba: this.getRGBA(data),
+      hex: this.getHex(data[0], data[1], data[2])
+    }
   }
 
 }
