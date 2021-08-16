@@ -1,0 +1,8 @@
+<div class="flex">
+  <input type="text" [(ngModel)]="message">
+  <button class="px-1 py-0.5 bg-pink-400" (click)="createToast()">Show</button>
+</div>
+
+<div class="absolute top-2 right-1">
+  <ng-template #viewContainerRef></ng-template>
+</div>

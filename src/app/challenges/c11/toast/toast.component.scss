@@ -1,0 +1,6 @@
+.toast {
+  min-width: 6rem;
+  width: fit-content;
+  min-height: 2em;
+  @apply relative bg-blue-500 text-center px-5 py-1 m-1;
+}
