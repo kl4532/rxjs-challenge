@@ -1,0 +1,32 @@
+.overlay {
+  @apply
+    w-screen
+    h-screen
+    bg-black
+    bg-opacity-50
+    absolute z-10
+    top-0 left-0
+    flex items-center
+    justify-center
+}
+
+.dialog {
+  @apply
+    p-2
+    bg-blue-200
+    rounded-2xl
+    absolute z-10
+    flex
+    justify-center;
+
+
+  min-width: 20rem;
+  min-height: 10rem;
+}
+
+button {
+  @apply px-2 py-0.5;
+  &:focus {
+    outline: 2px solid black;
+  }
+}
