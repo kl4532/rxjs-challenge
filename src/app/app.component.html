@@ -1,5 +1,5 @@
-<div class="container">
-  <select class="center mb-3" name="" id="" (change)="navigateTo($event.target)" [(ngModel)]="value">
+<div class="app-container">
+  <select class="mb-3" name="" id="" (change)="navigateTo($event.target)" [(ngModel)]="value">
     <option
       class="p-4"
       *ngFor="let challenge of challenges; let i = index"
