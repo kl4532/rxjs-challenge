@@ -2,8 +2,16 @@
   width: 100%;
 }
 
-.graphic {
-  @apply bg-red-400;
-  height: 8rem;
-  width: 28rem;
+.scale-container {
+  transform: scale(1);
+
+  .graphic {
+    @apply bg-red-400;
+    max-height: 80px;
+    width: 28rem;
+  }
+
+  .h2 {
+    max-height: 3rem;
+  }
 }
