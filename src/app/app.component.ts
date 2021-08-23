@@ -11,6 +11,7 @@ import {routes} from './app-routing.module';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'rxjs-challenge';
   challenges: string[] = [];
+  challengesToFix: number[] = [13];
   challengesAmount = routes.length;
   value: string = "c1";
   sub: Subscription | undefined;
@@ -39,4 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.sub?.unsubscribe();
   }
 
+  colorChallange(i: number) {
+    return this.challengesToFix.some(x=> x === i)
+  }
 }

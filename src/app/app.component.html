@@ -3,7 +3,9 @@
     <option
       class="p-4"
       *ngFor="let challenge of challenges; let i = index"
-      [value]="'c'+ (i+1)">{{challenge}}</option>
+      [value]="'c'+ (i+1)"
+      [style.color]="colorChallange(i+1) ? 'red' : 'green'"
+    >{{challenge}}</option>
   </select>
   <router-outlet></router-outlet>
 </div>
