@@ -1,0 +1,11 @@
+<p>Selected folders:
+  <ng-container *ngFor="let folder of folders">
+    <i *ngIf="folder.selected">{{folder.name}} </i>
+  </ng-container>
+</p>
+<div class="area" (click)="deselectAll()">
+  <div class="folder w-16 h-16 bg-yellow-300 flex justify-center items-center"
+       *ngFor="let folder of folders"
+       (click)="selectFolder($event); $event.stopImmediatePropagation()">{{folder.name}}
+  </div>
+</div>
