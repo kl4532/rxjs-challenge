@@ -3,9 +3,16 @@
     <i *ngIf="folder.selected">{{folder.name}} </i>
   </ng-container>
 </p>
-<div class="area" (click)="deselectAll()">
-  <div class="folder w-16 h-16 bg-yellow-300 flex justify-center items-center"
+<div class="area">
+  <div class="folder"
        *ngFor="let folder of folders"
-       (click)="selectFolder($event); $event.stopImmediatePropagation()">{{folder.name}}
+       (click)="selectFolder($event.target); $event.stopImmediatePropagation()">{{folder.name}}
   </div>
+  <ng-container *ngIf="(coordinates$ | async) as coo">
+    <div class="bg-blue-500 opacity-40 border-2 border-dotted border-blue-900 absolute"
+         [style.width.px]="coo.width" [style.height.px]="coo.height"
+         [style.top.px]="coo.top" [style.left.px]="coo.left"
+         *ngIf="selecting">
+    </div>
+  </ng-container>
 </div>
