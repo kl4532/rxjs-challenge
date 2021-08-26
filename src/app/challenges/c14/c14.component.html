@@ -3,7 +3,7 @@
     <i *ngIf="folder.selected">{{folder.name}} </i>
   </ng-container>
 </p>
-<div class="area">
+<div class="area" (click)="onSelect.next()">
   <div class="folder"
        *ngFor="let folder of folders"
        (click)="selectFolder($event.target); $event.stopImmediatePropagation()">{{folder.name}}

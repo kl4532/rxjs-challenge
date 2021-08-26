@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
-import {fromEvent, Observable} from "rxjs";
+import {fromEvent, Observable, Subject} from "rxjs";
 import {map, switchMap, takeUntil, tap} from "rxjs/operators";
 
 export interface Folder {
@@ -25,6 +25,7 @@ export class C14Component implements OnInit {
   folders: Folder[] = [];
   coordinates$: Observable<Coordinates> | undefined;
   selecting = false;
+  onSelect = new Subject;
 
   constructor(private renderer: Renderer2, private el: ElementRef) {
   }
@@ -43,23 +44,26 @@ export class C14Component implements OnInit {
     const mouseDown$ = fromEvent(area, 'mousedown');
     const mouseMove$ = fromEvent(area, 'mousemove');
 
-    this.coordinates$ = mouseDown$.pipe(
-      switchMap((start: any) => mouseMove$.pipe(
-        takeUntil(mouseUp$.pipe(tap(()=> this.selecting = false))),
-        map((end: any) => {
-          this.deselectAll();
-          this.selecting = true;
-          const selection: Coordinates = {
-            top: start.layerY,
-            left: start.layerX,
-            width: end.layerX - start.layerX,
-            height: end.layerY - start.layerY
-          }
-          this.selectFolders(area, selection);
-          return selection;
-        })
-      ))
-    );
+    this.coordinates$ = this.onSelect.pipe(
+     switchMap(()=> mouseDown$.pipe(
+       tap(()=>this.deselectAll()),
+       switchMap((start: any) => mouseMove$.pipe(
+         takeUntil(mouseUp$.pipe(tap(()=> this.selecting = false))),
+         map((end: any) => {
+           this.deselectAll();
+           this.selecting = true;
+           const selection: Coordinates = {
+             top: start.layerY,
+             left: start.layerX,
+             width: end.layerX - start.layerX,
+             height: end.layerY - start.layerY
+           }
+           this.selectFolders(area, selection);
+           return selection;
+         })
+       ))
+     ))
+    )
   }
 
 
