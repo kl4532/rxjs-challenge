@@ -1,0 +1,8 @@
+<div class="flex flex-col space-y-2 items-center">
+  <button class="btn btn-target blur rounded">Blur</button>
+  <button (click)="focusWithScript.next()" (keydown.enter)="$event.preventDefault(); $event.stopImmediatePropagation()" class="btn bg-pink-400 rounded">Focus</button>
+</div>
+<h2 *ngIf="focusedElement | async as target; else noFocus">Focus is on: {{target}}</h2>
+<ng-template #noFocus>
+  <h2>No focus</h2>
+</ng-template>

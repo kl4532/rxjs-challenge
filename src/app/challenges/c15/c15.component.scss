@@ -1,0 +1,29 @@
+.btn {
+  @apply rounded px-1 py-2;
+  min-width: 100px;
+}
+
+.blur {
+  @apply bg-red-500
+}
+
+.focus-script {
+  @apply bg-blue-500
+}
+
+.focus-keyboard {
+  @apply bg-green-500
+}
+
+.focus-mouse {
+  @apply bg-yellow-500
+}
+
+//.btn-target:focus-visible {
+//  outline: green;
+//  /* custom focus styles */
+//  box-shadow: 0 0 2px 2px #51a7e8;
+//  color: lime;
+//}
+
+
