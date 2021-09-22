@@ -16,6 +16,7 @@ import {C12Component} from "./challenges/c12/c12.component";
 import {C13Component} from "./challenges/c13/c13.component";
 import {C14Component} from "./challenges/c14/c14.component";
 import {C15Component} from "./challenges/c15/c15.component";
+import {C16Component} from "./challenges/c16/c16.component";
 
 export const routes: Routes = [
   { path: 'c1', component: C1Component },
@@ -32,7 +33,8 @@ export const routes: Routes = [
   { path: 'c12', component: C12Component },
   { path: 'c13', component: C13Component },
   { path: 'c14', component: C14Component },
-  { path: 'c15', component: C15Component }
+  { path: 'c15', component: C15Component },
+  { path: 'c16', component: C16Component }
 ];
 
 

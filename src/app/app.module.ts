@@ -22,6 +22,7 @@ import { C12Component } from './challenges/c12/c12.component';
 import { C13Component } from './challenges/c13/c13.component';
 import { C14Component } from './challenges/c14/c14.component';
 import { C15Component } from './challenges/c15/c15.component';
+import { C16Component } from './challenges/c16/c16.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { C15Component } from './challenges/c15/c15.component';
     C12Component,
     C13Component,
     C14Component,
-    C15Component
+    C15Component,
+    C16Component
   ],
   imports: [
     BrowserModule,
