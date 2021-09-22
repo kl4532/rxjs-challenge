@@ -1,23 +1,26 @@
-<div class="screen flex justify-center items-center bg-blue-300 w-96 h-40 mb-4">
-  <p class="font-bold text-green-50 text-lg select-none">SCREEN</p>
-</div>
+<div class="wrapper w-96">
+  <div class="screen flex justify-center items-center bg-blue-300 w-96 h-40 mb-4">
+    <p class="font-bold text-green-50 text-lg select-none">SCREEN</p>
+  </div>
 
-<div class="seats-container w-96 flex flex-wrap gap-1.5 flex justify-center">
-  <div class="select-none w-8 h-8 flex justify-center items-center"
-       [ngClass]="seat.taken ? 'bg-red-300' : 'bg-green-300'"
-       (click)="selectSeat($event, seat.seatNumber)"
-       *ngFor="let seat of seats;">
-    {{seat.seatNumber}}
+  <div class="seats-container w-96 flex flex-wrap gap-1.5 flex justify-center">
+    <div class="select-none w-8 h-8 flex justify-center items-center"
+         [ngClass]="seat.taken ? 'bg-red-300' : 'bg-green-300'"
+         (click)="selectSeat($event, seat.seatNumber)"
+         *ngFor="let seat of seats;">
+      {{seat.seatNumber}}
+    </div>
+  </div>
+  <div *ngIf="(selectedSeats$ | async) as seats">
+    <p>Seats selected: </p>
+    <i *ngFor="let seat of seats; let i=index">{{seat.seatNumber}} {{i === seats.length-1 ? '' : ', '}}</i>
+    <p *ngIf="totalPrice">Total cost: <b>{{totalPrice}}$</b></p>
+    <button
+      class="bg-blue-500 mt-2 px-2 py-1.5 rounded"
+      *ngIf="totalPrice" (click)="onBuy()">Buy tickets</button>
   </div>
 </div>
-<div *ngIf="(selectedSeats$ | async) as seats">
-  <p>Seats selected: </p>
-  <i *ngFor="let seat of seats; let i=index">{{seat.seatNumber}} {{i === seats.length-1 ? '' : ', '}}</i>
-  <p *ngIf="totalPrice">Total cost: <b>{{totalPrice}}$</b></p>
-  <button
-    class="bg-blue-500 mt-2 px-2 py-1.5 rounded"
-    *ngIf="totalPrice" (click)="onBuy()">Buy tickets</button>
-</div>
+
 
 
 
